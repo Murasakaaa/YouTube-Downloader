@@ -3,7 +3,22 @@
 
 from pytube import YouTube
 
-url = "https://www.youtube.com/watch?v=Rd8ap3GcAyA&ab_channel=Gawx2"
+# url = "https://www.youtube.com/watch?v=Rd8ap3GcAyA&ab_channel=Gawx2"
+
+
+# check if the url begin with "https://www.youtube.com"
+# if not then it shows an error and ask you the url again
+# Also if the url is only "https://www.youtube.com", it will ask you the url again
+
+base_ytb_url = "https://www.youtube.com"
+while True:
+    url = input("url of the video you want to download: ")
+    # if url[:len(base_ytb_url)] == base_ytb_url:
+    if url == base_ytb_url:
+        print(".")
+    elif url.lower().startswith(base_ytb_url):
+        break
+    print("The url is not valid. You have to enter a YouTube url.")
 
 
 def on_download_progress(stream, chunk, bytes_remaining):
@@ -32,4 +47,3 @@ print("Downloading...")
 
 stream.download()  # downloading the stream
 print("finished")
-
