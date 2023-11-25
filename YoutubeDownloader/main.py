@@ -38,7 +38,7 @@ print("Video title:", youtube_video.title)  # show the title of the video
 print("Views:", youtube_video.views)  # show the number of views of the video
 
 print("Streams")
-for stream in youtube_video.streams.fmt_streams:  # show all the streams of the video
+for stream in youtube_video.streams:  # show all the streams of the video
     print(" ", stream)
 
 # stream = youtube_video.streams.get_by_itag(18) # for a specific stream
