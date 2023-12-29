@@ -2,6 +2,8 @@
 # module pytube
 
 from pytube import YouTube
+import os
+import ffmpeg
 
 base_ytb_url = "https://www.youtube.com"
 
@@ -44,8 +46,8 @@ def get_video_itag_from_user(streams):
     itag = streams[res_num_int - 1].itag
     return itag
 
-# url = "https://www.youtube.com/watch?v=Rd8ap3GcAyA&ab_channel=Gawx2"
-url = get_video_url_from_user()
+url = "https://www.youtube.com/watch?v=Rd8ap3GcAyA&ab_channel=Gawx2"
+# url = get_video_url_from_user()
 
 def on_download_progress(stream, chunk, bytes_remaining):
     """take the filesize - bytes remaining, convert it to percents
@@ -64,13 +66,32 @@ print("Video title:", youtube_video.title)  # show the title of the video
 print("Views:", youtube_video.views)  # show the number of views of the video
 
 print("")
+print("STREAMS")
+streams = youtube_video.streams.filter(progressive=False, file_extension='mp4', type="video").order_by('resolution').desc()
+video_stream = streams[0]
 
-streams = youtube_video.streams.filter(progressive=True, file_extension='mp4')
-itag = get_video_itag_from_user(streams)
+streams = youtube_video.streams.filter(progressive=False, file_extension='mp4', type="audio").order_by('abr').desc()
+audio_stream = streams[0]
 
-stream = youtube_video.streams.get_by_itag(itag)  # for a specific stream
+# -----
+# itag = get_video_itag_from_user(streams)
+# stream = youtube_video.streams.get_by_itag(itag)  # for a specific stream
+# -----
 
-print("Downloading...")
+print("Video downloading...")
+video_stream.download("video")  # downloading the video part in the "video" folder
+print("finished")
 
-stream.download()  # downloading the stream
+print("Audio downloading...")
+audio_stream.download("audio")  # downloading the audio part in the "audio" folder
+print("finished")
+
+# --- Combining the two files into 1 video with audio ---
+# ffmpeg can't use streams as it is a pytube thing, so it uses filenames
+audio_filename = os.path.join("audio", video_stream.default_filename)
+video_filename = os.path.join("video", video_stream.default_filename)
+output_filename = video_stream.default_filename
+
+print("Creating the final file...")
+ffmpeg.output(ffmpeg.input(audio_filename), ffmpeg.input(video_filename), output_filename, vcodec="copy", acodec="copy", loglevel="quiet").run(overwrite_output=True)
 print("finished")
