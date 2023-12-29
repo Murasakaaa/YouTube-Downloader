@@ -95,3 +95,8 @@ output_filename = video_stream.default_filename
 print("Creating the final file...")
 ffmpeg.output(ffmpeg.input(audio_filename), ffmpeg.input(video_filename), output_filename, vcodec="copy", acodec="copy", loglevel="quiet").run(overwrite_output=True)
 print("finished")
+
+print('Deleting temporary files...')
+os.remove(audio_filename)
+os.remove(video_filename)
+print('finished')
