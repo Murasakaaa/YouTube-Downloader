@@ -46,8 +46,7 @@ def get_video_itag_from_user(streams):
     itag = streams[res_num_int - 1].itag
     return itag
 
-url = "https://www.youtube.com/watch?v=Rd8ap3GcAyA&ab_channel=Gawx2"
-# url = get_video_url_from_user()
+url = get_video_url_from_user()
 
 def on_download_progress(stream, chunk, bytes_remaining):
     """take the filesize - bytes remaining, convert it to percents
@@ -61,12 +60,11 @@ def on_download_progress(stream, chunk, bytes_remaining):
 youtube_video = YouTube(url)
 
 youtube_video.register_on_progress_callback(on_download_progress)  # calls the function when download progress
-
+print("")
 print("Video title:", youtube_video.title)  # show the title of the video
 print("Views:", youtube_video.views)  # show the number of views of the video
-
 print("")
-print("STREAMS")
+
 streams = youtube_video.streams.filter(progressive=False, file_extension='mp4', type="video").order_by('resolution').desc()
 video_stream = streams[0]
 
@@ -82,9 +80,13 @@ print("Video downloading...")
 video_stream.download("video")  # downloading the video part in the "video" folder
 print("finished")
 
+print("")
+
 print("Audio downloading...")
 audio_stream.download("audio")  # downloading the audio part in the "audio" folder
 print("finished")
+
+print("")
 
 # --- Combining the two files into 1 video with audio ---
 # ffmpeg can't use streams as it is a pytube thing, so it uses filenames
@@ -95,6 +97,8 @@ output_filename = video_stream.default_filename
 print("Creating the final file...")
 ffmpeg.output(ffmpeg.input(audio_filename), ffmpeg.input(video_filename), output_filename, vcodec="copy", acodec="copy", loglevel="quiet").run(overwrite_output=True)
 print("finished")
+
+print("")
 
 print('Deleting temporary files...')
 os.remove(audio_filename)
