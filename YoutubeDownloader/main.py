@@ -1,7 +1,6 @@
-# YouTube downloader -> can't download age restricted video bcause you have to log in to ytb
-# module pytube
+# YouTube downloader -> can't download age restricted video bcause you have to log in to yt
 
-from pytube import YouTube
+from pytubefix import YouTube
 import os
 import ffmpeg
 
