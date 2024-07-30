@@ -18,7 +18,7 @@ def get_video_url_from_user():
         elif u.lower().startswith(base_ytb_url):  # if u[:len(base_ytb_url)] == base_ytb_url:
             return u
         print("The url is not valid. You have to enter a YouTube url.")
-
+'''
 def get_video_itag_from_user(streams):
     print("CHOICE OF RES")
 
@@ -44,6 +44,8 @@ def get_video_itag_from_user(streams):
 
     itag = streams[res_num_int - 1].itag
     return itag
+'''
+
 
 url = get_video_url_from_user()
 
