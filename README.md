@@ -1,6 +1,6 @@
 # Simple YouTube downloader
 
-Download your favorite YouTube videos easily from only the URL. Created with [Pytube](https://pytube.io/en/latest/)
+Download your favorite YouTube videos easily from only the URL. Created with [Pytubefix](https://pytubefix.readthedocs.io/en/latest/index.html)
 
 # How to use
 
@@ -20,14 +20,14 @@ Open the Terminal and run the following:
 pip install pytube
 ```
 
- * Installing ffmpeg
+ * Installing FFmpeg
 
 watch this video to install ffmpeg on your computer -> [here](https://www.youtube.com/watch?v=DMEP82yrs5g&ab_channel=Infinetsoftsolutions) (the video is not mine)
 
 Then open the Terminal and run the following:
 
 ```sh
-pip install ffmpeg-python
+pip install FFmpeg-python
 ```
 
 ### Mac
@@ -40,14 +40,14 @@ Open the Terminal and run the following:
 pip3 install pygame
 ```
 
-* Installing ffmpeg
+* Installing FFmpeg
 
 watch this video to install ffmpeg on your computer -> [here](https://www.youtube.com/watch?v=nmrjRqEIgGc&ab_channel=DavidHelmuth) (the video is not mine)
 
 Then open the Terminal and run the following:
 
 ```sh
-pip3 install ffmpeg-python
+pip3 install FFmpeg-python
 ```
 # What can be done to make it better
 
