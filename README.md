@@ -17,7 +17,7 @@ The videos are downloaded directly into the project folder where the main.py is.
 Open the Terminal and run the following:
 
 ```sh
-pip install pytube
+pip install pytubefix
 ```
 
  * Installing FFmpeg
@@ -27,7 +27,7 @@ watch this video to install ffmpeg on your computer -> [here](https://www.youtub
 Then open the Terminal and run the following:
 
 ```sh
-pip install FFmpeg-python
+pip install ffmpeg-python
 ```
 
 ### Mac
@@ -37,7 +37,7 @@ pip install FFmpeg-python
 Open the Terminal and run the following:
 
 ```sh
-pip3 install pygame
+pip3 install pytubefix
 ```
 
 * Installing FFmpeg
@@ -47,7 +47,7 @@ watch this video to install ffmpeg on your computer -> [here](https://www.youtub
 Then open the Terminal and run the following:
 
 ```sh
-pip3 install FFmpeg-python
+pip3 install ffmpeg-python
 ```
 # What can be done to make it better
 
