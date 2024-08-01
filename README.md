@@ -51,7 +51,7 @@ pip3 install ffmpeg-python
 ```
 # What can be done to make it better
 
- * make a simple UI with Tkinter ( I am working on it ).
- * being able to download multiple videos like a download queue.
- * being able to choose to download only the audio (for music for example ).
- * being able to select different resolutions for the video.
+- [x] make a simple UI with Tkinter.
+- [x] being able to choose to download only the audio (for music for example ).
+- [ ] being able to download multiple videos like a download queue.
+- [ ] being able to select different resolutions for the video.

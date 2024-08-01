@@ -1,5 +1,4 @@
 # YouTube downloader -> can't download age restricted video bcause you have to log in to yt
-
 from pytubefix import YouTube
 import os
 import ffmpeg
@@ -19,6 +18,8 @@ def get_video_url_from_user():
             return u
         print("The url is not valid. You have to enter a YouTube url.")
 
+# asks the user to choose between downloading a mp3 or a mp4
+# if the user enter another number than the one for the choice it asks again
 def choice():
     while True:
         choice = int(input("mp3(1) or mp4(2)?: "))
@@ -27,26 +28,26 @@ def choice():
         print('enter correct choice')
 
 def dl_video():
-    url = get_video_url_from_user()
+    url = get_video_url_from_user()  # asks the user for the video url
     vid = YouTube(url)
     print("Video title: ", vid.title)  # show the title of the video
-    c = choice()
+    c = choice()    # asks the user to choose between mp3 or mp4
     if c == 1:
         print('downloading...')
-        stream = vid.streams.filter(only_audio=True).order_by('abr').desc()
-        vid_stream = stream[0]
+        stream = vid.streams.filter(only_audio=True).order_by('abr').desc()  # filters the audio streams
+        vid_stream = stream[0]      # choose the best audio stream
         print(vid_stream)
         vid.register_on_progress_callback(on_download_progress)
-        vid_stream.download(mp3=True)
+        vid_stream.download(mp3=True)  # download the audio stream
         print('finished')
 
     if c == 2:
         vid.register_on_progress_callback(on_download_progress)
-        streams = vid.streams.filter(progressive=False, file_extension='mp4', type="video").order_by('resolution').desc()
-        video_stream = streams[0]
+        streams = vid.streams.filter(progressive=False, file_extension='mp4', type="video").order_by('resolution').desc()  # filters the video streams
+        video_stream = streams[0]   # choose the best video stream
 
-        streams = vid.streams.filter(progressive=False, file_extension='mp4', type="audio").order_by('abr').desc()
-        audio_stream = streams[0]
+        streams = vid.streams.filter(progressive=False, file_extension='mp4', type="audio").order_by('abr').desc()  # filters the audio streams
+        audio_stream = streams[0]  # choose the best audio stream
         print("Video downloading...")
         video_stream.download("video")  # downloading the video part in the "video" folder
         print("finished")
@@ -71,11 +72,13 @@ def dl_video():
 
         print("")
 
+        # removes the separated parts
         print('Deleting temporary files...')
         os.remove(audio_filename)
         os.remove(video_filename)
         print('finished')
 
+# show the progress
 def on_download_progress(stream, chunk, bytes_remaining):
     """take the filesize - bytes remaining, convert it to percents
     and show the percentage of download progress"""
