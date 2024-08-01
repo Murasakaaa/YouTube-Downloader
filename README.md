@@ -6,7 +6,7 @@ Download your favorite YouTube videos easily from only the URL. Created with [Py
 
 When executed, the program asks you the URL of the video you want to download. The URL has to begin with *https://www.youtube.com* to continue or else it asks you again.
 Then you need to wait for the video to be downloaded. That's it!
-The videos are downloaded directly into the project folder where the main.py is. If you download the same video (same name) 2 times it will automatically overwrite the previous one.
+The videos are downloaded directly into the project folder where the .py files are. If you download the same video (same name) 2 times it will automatically overwrite the previous one.
 
 # How to install
 
